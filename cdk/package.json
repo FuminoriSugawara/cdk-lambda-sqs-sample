@@ -10,7 +10,7 @@
     "test": "jest",
     "cdk": "cdk",
     "cdklocal:deploy": "npm run build && cdklocal bootstrap && cdklocal deploy --require-approval never",
-    "lambda:invoke": "awslambda invoke --function-name PublisherLambda output.txt"
+    "lambda:invoke": "awslocal lambda invoke --function-name PublisherLambda output.txt"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
