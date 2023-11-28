@@ -1,0 +1,14 @@
+{
+  "name": "publisher",
+  "version": "1.0.0",
+  "description": "SQS queue publisher",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.458.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
