@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as lambdaEventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import { CfnOutput } from "aws-cdk-lib";
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -21,6 +22,14 @@ export class CdkStack extends cdk.Stack {
       environment: {
         SQS_QUEUE_URL: queue.queueUrl,
       },
+    });
+
+    const publisherLambdaUrl = publisherLambdaFn.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.AWS_IAM,
+    });
+
+    new CfnOutput(this, "PublisherLambdaUrl", {
+      value: publisherLambdaUrl.url,
     });
 
     queue.grantSendMessages(publisherLambdaFn);
